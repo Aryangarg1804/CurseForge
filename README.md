@@ -26,6 +26,12 @@ Most AI tools return plain text. CourseForge AI focuses on producing learning-re
 - Authenticated course dashboard with progress tracking
 - Course CRUD with MongoDB persistence
 - Responsive frontend for generation and learning flow
+- **✨ NEW: Real-Time Support Chat System**
+  - User support chat popup with message history
+  - Real-time messaging using Socket.IO
+  - Support agent dashboard for managing conversations
+  - Typing indicators, online status, message delivery tracking
+  - Multi-chat support with status management
 
 ## Highlights (Videos and Images)
 
@@ -46,9 +52,10 @@ Replace placeholder image paths below with your real screenshots.
 
 ## Tech Stack
 
-- Frontend: React, Vite, Tailwind CSS, shadcn/ui
-- Backend: Node.js, Express, MongoDB, JWT authentication
+- Frontend: React, Vite, Tailwind CSS, shadcn/ui, Socket.IO Client
+- Backend: Node.js, Express, MongoDB, JWT authentication, Socket.IO Server
 - AI Layer: Groq Chat Completions API
+- Real-Time: Socket.IO for bi-directional communication
 
 ## Architecture (High Level)
 
@@ -129,6 +136,17 @@ This is temporary and will be replaced with stronger per-user controls.
 - Quiz generation
 - Subjective assessment questions
 - Coding challenges
+- File uploads in support chat
+- Video/audio calls integration
+
+## 📖 Documentation
+
+- **[Quick Start Guide](./QUICK_START.md)** - Get started in 5 minutes
+- **[Chat Feature Documentation](./CHAT_FEATURE_README.md)** - Complete real-time chat system guide
+  - API endpoints
+  - Socket.IO events
+  - Setup instructions
+  - Troubleshooting
 
 ## Why This Project
 

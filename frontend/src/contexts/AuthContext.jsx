@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { authAPI } from '@/lib/api';
+import socketService from '@/services/socketService';
 
 const AuthContext = createContext(undefined);
 
@@ -15,8 +16,11 @@ export function AuthProvider({ children }) {
         try {
           const userData = await authAPI.getCurrentUser();
           setUser(userData);
+          // Connect socket with token
+          socketService.connect(token);
         } catch (error) {
           localStorage.removeItem('token');
+          socketService.disconnect();
         }
       }
       setLoading(false);
@@ -28,17 +32,22 @@ export function AuthProvider({ children }) {
     const response = await authAPI.login(email, password);
     localStorage.setItem('token', response.token);
     setUser(response.user);
+    // Connect socket with token
+    socketService.connect(response.token);
   };
 
   const register = async (email, password, name) => {
     const response = await authAPI.register(email, password, name);
     localStorage.setItem('token', response.token);
     setUser(response.user);
+    // Connect socket with token
+    socketService.connect(response.token);
   };
 
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
+    socketService.disconnect();
   };
 
   return (
